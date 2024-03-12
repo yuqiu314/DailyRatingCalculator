@@ -13,11 +13,15 @@
 <body>
 <textarea id="textarea1"></textarea>
 <textarea id="textarea2"></textarea>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script>
-$("#textarea1").keyup(function(){
+var textarea1 = document.getElementById("textarea1");
+var textarea2 = document.getElementById("textarea2");
+textarea1.addEventListener("keyup", (event) => {
+    if (event.isComposing || event.keyCode === 229) {
+      return;
+    }
     var studentsscore = Array(50).fill(0);
-    var lines = this.value.split('\n');
+    var lines = textarea1.value.split('\n');
     for(var l = 0;l < lines.length;l++) {
         var nums = lines[l].split(' ');
         if(nums.length > 1 && Number(nums[0])) {
@@ -36,8 +40,8 @@ $("#textarea1").keyup(function(){
             output = output + '\n' + i + ' ' + studentsscore[i];
         }
     }
-    $('#textarea2').val(output);
-});
+    textarea2.value = output;
+  });
   </script>
 </body>
 </html>
