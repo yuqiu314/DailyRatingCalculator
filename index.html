@@ -3,13 +3,19 @@
 <head>
   <meta charset="utf-8">
   <title>德育分统计小工具</title>
-  <link href="style.css" rel="stylesheet" />
+  <style>
+    textarea{
+      height:500px;
+      width:200px;
+    }
+  </style>
 </head>
 <body>
 <textarea id="textarea1"></textarea>
 <textarea id="textarea2"></textarea>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script>
+$("#textarea1").keyup(function(){
     var studentsscore = Array(50).fill(0);
     var lines = this.value.split('\n');
     for(var l = 0;l < lines.length;l++) {
@@ -31,6 +37,7 @@
         }
     }
     $('#textarea2').val(output);
+});
   </script>
 </body>
 </html>
