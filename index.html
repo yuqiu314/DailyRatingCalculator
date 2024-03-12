@@ -10,6 +10,27 @@
 <textarea id="textarea2"></textarea>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script>
+    var studentsscore = Array(50).fill(0);
+    var lines = this.value.split('\n');
+    for(var l = 0;l < lines.length;l++) {
+        var nums = lines[l].split(' ');
+        if(nums.length > 1 && Number(nums[0])) {
+            var score = Number(nums[0]);
+            for(var i = 1;i < nums.length;i++) {
+                var student = Number(nums[i]);
+                if(student > 0 && student < 50) {
+                    studentsscore[student] += score;
+                }
+            }
+        }
+    }
+    var output = '计算结果：';
+    for(var i = 0; i < studentsscore.length; i++) {
+        if(studentsscore[i] != 0) {
+            output = output + '\n' + i + ' ' + studentsscore[i];
+        }
+    }
+    $('#textarea2').val(output);
   </script>
 </body>
 </html>
